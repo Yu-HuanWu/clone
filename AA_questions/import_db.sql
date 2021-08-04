@@ -62,6 +62,9 @@ INSERT INTO
     questions(title, body, user_id)
 VALUES
     ('Why is the sky blue?', 'Why the sky is red sometimes', (SELECT id FROM users WHERE fname = 'Minh' AND lname = 'Nguyen')),
+
+    ('What is the answer to life', 'is it 42? I do not know', (SELECT id FROM users WHERE fname = 'Minh' AND lname = 'Nguyen')),
+    
     ('Why do SQL so weird', 'I wish coding was easier', (SELECT id FROM users WHERE fname = 'Yu Huan' AND lname = 'Wu'));
 
 INSERT INTO
@@ -81,6 +84,11 @@ INSERT INTO
     replies(pr_id, q_id, user_id, body)
 VALUES
     ((SELECT id FROM replies WHERE body = 'SQL is one of the most popular languages, it is not weird at all, perhaps you are the weird one.') , (SELECT id FROM questions WHERE title = 'Why do SQL so weird' ), (SELECT id FROM users WHERE fname = 'Yu Huan' AND lname = 'Wu'), 'Wow i did not ask for this.');
+
+INSERT INTO
+    replies(pr_id, q_id, user_id, body)
+VALUES
+    ((SELECT id FROM replies WHERE body = 'Wow i did not ask for this.') , (SELECT id FROM questions WHERE title = 'Why do SQL so weird' ), (SELECT id FROM users WHERE fname = 'Minh' AND lname = 'Nguyen'), 'Hope you learned your lesson');
 
 INSERT INTO
     question_likes(q_id, user_id)
