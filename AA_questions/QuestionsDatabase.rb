@@ -46,6 +46,11 @@ class Question
     return "#{User.find_by_id(self.user_id).fname} #{User.find_by_id(self.user_id).lname}"
   end
 
+  def replies
+    Reply.find_by_question_id(self.id).map.with_index {|ele,idx| puts "#{idx+1}. #{ele.body}"}
+    return self
+  end
+
 end
 
 class User
@@ -133,14 +138,14 @@ class Reply
         # Reply.new(reply.first)   
     end
 
-    def self.find_by_question_id(pr_id)
-        reply = QuestionsDatabase.instance.execute(<<-SQL, pr_id)
+    def self.find_by_question_id(q_id)
+        reply = QuestionsDatabase.instance.execute(<<-SQL, q_id)
             SELECT *
             FROM replies
-            WHERE pr_id = ?
+            WHERE q_id = ?
         SQL
         return nil unless reply.length > 0
-        Reply.new(reply.first)
+        reply.map {|el| Reply.new(el)}
     end
 
     def initialize(option)
