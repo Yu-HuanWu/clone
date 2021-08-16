@@ -1,6 +1,6 @@
 <h2> Create a new user </h2>
 
-<form action="<%= users_url %>">
+<form action="<%= users_url %>" method="post">
     <label> Username:
         <input type="text" name="user[user_name]" value="<%= @user.user_name %>">
     </label>
