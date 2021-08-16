@@ -1,6 +1,7 @@
 <h1><%= @cat.name %></h1>
 
 <table>
+
   <tr>
     <th>Attribute</th>
     <th>Value</th>
@@ -11,6 +12,12 @@
       <td><%= @cat.send(attr_name) %></td>
     </tr>
   <% end %>
+    <tr>
+    <td colspan="2">
+    <img src="<%= @cat.sex== "F" ? "https://i.imgur.com/G7jtcxv.jpeg" : "https://i.imgur.com/oi7AScf.jpeg" %>"
+      alt="cat eaten by fish or cat in dress">
+    </td>
+  </tr>
 </table>
 
 <a href="<%= edit_cat_url(@cat) %>">Edit <%= @cat.name %></a>
