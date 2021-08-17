@@ -33,25 +33,30 @@
         background-color: #333;
         color: #fff;
       }
+
+      .top_header{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
     </style>
   </head>
-    <header>
-      <h1>Welcome To Rent-A-Cat</h1>
-    </header>
-
+      <h1 class="top_header">Rent-A-Cat</h1>
+  </header>
+  <body>
+  <div class="top_header">
     <% if logged_in? %>
-       <h3>Welcome, <%= current_user.user_name %>!</h3>
+      <h3>Welcome, <%= current_user.user_name %>!</h3>
+      <form action="<%= session_url %>" method='post'>
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Logout">
+      </form>
     <% else %>
       <a href="<%= new_user_url %>">Sign Up</a>
       <br>
       <a href="<%= new_session_url %>">Login</a>
     <% end %>
-
-    <form action="<%= session_url %>" method='post'>
-      <input type="hidden" name="_method" value="delete">
-      <input type="submit" value="Logout">
-    </form>
-
+  </div>
     <%= yield %>
     
   </body>
