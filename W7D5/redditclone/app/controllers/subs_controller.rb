@@ -39,12 +39,14 @@ class SubsController < ApplicationController
             flash[errors] = ["Sub does not exist"]
             redirect_to subs_url
         end
-
-        if @sub.update(sub_param)
-            redirect_to sub_url(@sub)
-        else
-            flash.now[errors] = ["Cannot update sub, try again"]
-            render :edit
+        
+        if @sub.moderator_id == current_user.id
+            if @sub.update(sub_param) 
+                redirect_to sub_url(@sub)
+            else
+                flash.now[errors] = ["Cannot update sub, try again"]
+                render :edit
+            end
         end
     end
 
