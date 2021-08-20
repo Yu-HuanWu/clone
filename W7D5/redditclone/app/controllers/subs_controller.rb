@@ -1,5 +1,7 @@
 class SubsController < ApplicationController
     # index
+    before_action :require_logged_in
+
     def index
         @subs = Sub.all
         render :index
@@ -59,5 +61,10 @@ class SubsController < ApplicationController
             flash[errors] = ["Sub does not exist, cannot delete"]
         end
         redirect_to subs_url
+    end
+
+    private
+    def sub_param
+        params.require(:sub).permit(:title, :description, :moderator_id)
     end
 end
