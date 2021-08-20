@@ -13,7 +13,8 @@ class Sub < ApplicationRecord
     validates :title, presence: true, uniqueness: true
     validates :description, :moderator_id, presence: true
 
-    attr_reader :moderator_id
+    # attr_reader :moderator_id
+    # ^ For some reason this is not needed.
 
     belongs_to :moderator,
         foreign_key: :moderator_id,

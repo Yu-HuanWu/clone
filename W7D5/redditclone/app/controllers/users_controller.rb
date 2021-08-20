@@ -12,7 +12,7 @@ class UsersController < ApplicationController
             login(@user)
             redirect_to subs_url
         else
-            flash.now[errors] = ["Could not create user"]
+            flash.now[:errors] = ["Could not create user"]
             render :new
         end
     end

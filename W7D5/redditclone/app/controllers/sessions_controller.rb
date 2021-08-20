@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
             login(@user)
             redirect_to subs_url
         else
-            flash[errors] = ["Access Denied"]
+            flash[:errors] = ["Access Denied"]
             redirect_to new_session_url
         end
     end
