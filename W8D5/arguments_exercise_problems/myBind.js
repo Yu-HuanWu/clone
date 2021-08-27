@@ -1,12 +1,20 @@
-Function.prototype.myBind = function(context){
-    const that = this;
-    let bindArgs = Array.from(arguments).slice(1);
-    // console.log(args);
-    return function(){
-        let callArgs = Array.from(arguments);
-        return that.apply(context, bindArgs.concat(callArgs));
-    }
-}
+// Function.prototype.myBind = function(context){
+//     const that = this;
+//     let bindArgs = Array.from(arguments).slice(1);
+//     // console.log(args);
+//     return function(){
+//         let callArgs = Array.from(arguments);
+//         return that.apply(context, bindArgs.concat(callArgs));
+//     }
+// }
+
+Function.prototype.myBind = function(context, ...bindArgs){
+  const that = this;
+  return function(...callArgs) {
+    // return that.apply(context, bindArgs.concat(callArgs))
+    return that.apply(context, [...bindArgs, ...callArgs]);
+  };
+};
 
 class Cat {
     constructor(name) {
